@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="jquery-3.2.1.min.js"></script>
+<script src="judge.js"></script>
+<script src="replace.js"></script>
+</script>
+</head>
+<body>
+<p><strong>p1</strong> 233 </p>
+<p>p2</p>
+</body>
+<script>
+
+function judge(str) {
+	var score = null;
+	$.ajax({
+	url: "http://127.0.0.1:8080",
+	type: "post",
+	async: false,
+	data: {
+		"query": str
+	},
+	dataType: 'json',
+	success:	function(data,status) {
+		score = data;
+		//score = data[0]["Item2"][0]["Score"];
+	}
+	});
+	return score;
+}
+
+console.log(judge("中国队战胜美国队|朱婷带伤上阵女排1-3塞尔维亚大奖赛第四名收官"));
+</script>
+</html>
+
